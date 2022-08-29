@@ -3,12 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StepByStep_Application"
+        xmlns:local="clr-namespace:StepByStep_Application" xmlns:local1="clr-namespace:StepByStep_Application.Models"
         mc:Ignorable="d"
         Title="StepByStep" Height="450" Width="800">
-    <Grid>
+
+    <Window.DataContext>
+
+        <local1:User/>
+
+    </Window.DataContext>
+
+    <!--<Grid>
         <Label Content="Список пользователей" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="150"/>
         <Label Content="График по выбранному пользователю" HorizontalAlignment="Left" Margin="450,10,0,0" VerticalAlignment="Top" Width="230"/>
-
+    </Grid>-->
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" ColumnHeaderHeight="50" Height="360" HorizontalAlignment="Left" Margin="12,0,0,0" Name="dataGrid1" VerticalAlignment="Center" Width="502" SelectionChanged="dataGrid1_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО" Width="40" Binding="{Binding UserName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Среднее количество пройденных шагов" Width="240" Binding="{Binding Steps}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Лучший результат" Width="110" Binding="{Binding Steps}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Худший результат" Width="110" Binding="{Binding Steps}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Список пользователей:" HorizontalAlignment="Left" Height="25" Margin="11,7,0,0" VerticalAlignment="Top" Width="278"/>
+        <Label Content="График по выбранному пользователю:" HorizontalAlignment="Left" Height="25" Margin="513,7,0,0" VerticalAlignment="Top" Width="278"/>
     </Grid>
+
 </Window>
