@@ -3,31 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StepByStep_Application" xmlns:local1="clr-namespace:StepByStep_Application.Models"
+        xmlns:local="clr-namespace:StepByStep_Application" xmlns:local1="clr-namespace:StepByStep_Application.Models" xmlns:viewModels="clr-namespace:StepByStep_Application.ViewModels"
         mc:Ignorable="d"
-        Title="StepByStep" Height="450" Width="800">
+        Title="StepByStep" Height="450" Width="800" Loaded="Window_Loaded">
 
     <Window.DataContext>
-
-        <local1:User/>
-
+        <viewModels:UserViewModel/>
     </Window.DataContext>
 
-    <!--<Grid>
-        <Label Content="Список пользователей" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="150"/>
-        <Label Content="График по выбранному пользователю" HorizontalAlignment="Left" Margin="450,10,0,0" VerticalAlignment="Top" Width="230"/>
-    </Grid>-->
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" ColumnHeaderHeight="50" Height="360" HorizontalAlignment="Left" Margin="12,0,0,0" Name="dataGrid1" VerticalAlignment="Center" Width="502" SelectionChanged="dataGrid1_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ФИО" Width="40" Binding="{Binding UserName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Среднее количество пройденных шагов" Width="240" Binding="{Binding Steps}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Лучший результат" Width="110" Binding="{Binding Steps}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Худший результат" Width="110" Binding="{Binding Steps}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+    <Grid x:Name="___No_Name_">
         <Label Content="Список пользователей:" HorizontalAlignment="Left" Height="25" Margin="11,7,0,0" VerticalAlignment="Top" Width="278"/>
         <Label Content="График по выбранному пользователю:" HorizontalAlignment="Left" Height="25" Margin="513,7,0,0" VerticalAlignment="Top" Width="278"/>
+
+        <DataGrid x:Name="DescriprtionOfUsers" Margin="0,34,315,20" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="472">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path = Names}" IsReadOnly="True" Header="ФИО"  Width="80"/>
+                <DataGridTextColumn Binding="{Binding Path = AverageSteps}" IsReadOnly="True" Header="Среднее количество шагов" Width="170"/>
+                <DataGridTextColumn Binding="{Binding Path = HighestResults}" IsReadOnly="True" Header="Лучший результат"  Width="110"/>
+                <DataGridTextColumn Binding="{Binding Path = WorstResults}" IsReadOnly="True" Header="Худший результат"  Width="110"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 
 </Window>
