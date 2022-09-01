@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StepByStep_Application" xmlns:local1="clr-namespace:StepByStep_Application.Models" xmlns:viewModels="clr-namespace:StepByStep_Application.ViewModels"
         mc:Ignorable="d"
-        Title="StepByStep" Height="450" Width="800">
+        Title="StepByStep" Height="550" Width="1000">
 
     <Window.DataContext>
         <viewModels:UserViewModel/>
@@ -15,7 +15,7 @@
         <Label Content="Список пользователей:" HorizontalAlignment="Left" Height="25" Margin="11,7,0,0" VerticalAlignment="Top" Width="278"/>
         <Label Content="График по выбранному пользователю:" HorizontalAlignment="Left" Height="25" Margin="513,7,0,0" VerticalAlignment="Top" Width="278"/>
 
-        <DataGrid x:Name="DescriprtionOfUsers" Margin="0,34,316,20" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="471">
+        <DataGrid x:Name="DescriprtionOfUsers" Margin="0,33,508,21" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="479" CanUserSortColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding BindModelName}" Width="80" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Среднее количество шагов" Binding="{Binding BindModelAverageSteps}" Width="170" IsReadOnly="True"/>

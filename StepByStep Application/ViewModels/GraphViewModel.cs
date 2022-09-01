@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StepByStep_Application.ViewModels
 {
-    public class GraphViewModel : UserViewModel
+    public class GraphViewModel
     {
 
     }
