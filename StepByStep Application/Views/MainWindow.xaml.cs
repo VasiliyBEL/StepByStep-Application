@@ -25,20 +25,15 @@ namespace StepByStep_Application
     /// </summary>
     public partial class MainWindow : Window
     {
-        private BindingList<UserViewModel> data;
 
         private readonly UserViewModel _userViewModel;
         public MainWindow()
         {
             InitializeComponent();
             _userViewModel = new UserViewModel();
-        }
+            List<BindModel> users = BindViewModel.GetCollectionOfUsers(_userViewModel);
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            data = new BindingList<UserViewModel>();
-
-            DescriprtionOfUsers.ItemsSource = data;
+            DescriprtionOfUsers.ItemsSource = users;
         }
     }
 }

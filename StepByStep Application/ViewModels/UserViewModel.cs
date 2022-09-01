@@ -14,8 +14,6 @@ namespace StepByStep_Application.ViewModels
 {
     public class UserViewModel
     {
-        private readonly UserProfile userModel;
-
         public List<List<UserProfile>>? Users { get; set; }
 
         public HashSet<string>? Names { get; set; }
@@ -30,7 +28,6 @@ namespace StepByStep_Application.ViewModels
 
         public UserViewModel()
         {
-            userModel = new UserProfile();
             GetJsonData();
         }
 

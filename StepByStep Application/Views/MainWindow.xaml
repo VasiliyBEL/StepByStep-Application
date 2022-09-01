@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StepByStep_Application" xmlns:local1="clr-namespace:StepByStep_Application.Models" xmlns:viewModels="clr-namespace:StepByStep_Application.ViewModels"
         mc:Ignorable="d"
-        Title="StepByStep" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="StepByStep" Height="450" Width="800">
 
     <Window.DataContext>
         <viewModels:UserViewModel/>
     </Window.DataContext>
 
-    <Grid x:Name="___No_Name_">
+    <Grid>
         <Label Content="Список пользователей:" HorizontalAlignment="Left" Height="25" Margin="11,7,0,0" VerticalAlignment="Top" Width="278"/>
         <Label Content="График по выбранному пользователю:" HorizontalAlignment="Left" Height="25" Margin="513,7,0,0" VerticalAlignment="Top" Width="278"/>
 
-        <DataGrid x:Name="DescriprtionOfUsers" Margin="0,34,315,20" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="472">
+        <DataGrid x:Name="DescriprtionOfUsers" Margin="0,34,316,20" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="471">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path = Names}" IsReadOnly="True" Header="ФИО"  Width="80"/>
-                <DataGridTextColumn Binding="{Binding Path = AverageSteps}" IsReadOnly="True" Header="Среднее количество шагов" Width="170"/>
-                <DataGridTextColumn Binding="{Binding Path = HighestResults}" IsReadOnly="True" Header="Лучший результат"  Width="110"/>
-                <DataGridTextColumn Binding="{Binding Path = WorstResults}" IsReadOnly="True" Header="Худший результат"  Width="110"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding BindModelName}" Width="80" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Среднее количество шагов" Binding="{Binding BindModelAverageSteps}" Width="170" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Лучший результат" Binding="{Binding BindModelHighestResults}" Width="110" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Худший результат" Binding="{Binding BindModelWorstResults}" Width="110" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
