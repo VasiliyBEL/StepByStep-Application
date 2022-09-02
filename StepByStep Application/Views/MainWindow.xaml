@@ -13,9 +13,14 @@
 
     <Grid>
         <Label Content="Список пользователей:" HorizontalAlignment="Left" Height="25" Margin="11,7,0,0" VerticalAlignment="Top" Width="278"/>
-        <Label Content="График по выбранному пользователю:" HorizontalAlignment="Left" Height="25" Margin="513,7,0,0" VerticalAlignment="Top" Width="278"/>
+        <Label Content="График по выбранному пользователю:" HorizontalAlignment="Left" Height="25" Margin="538,7,0,0" VerticalAlignment="Top" Width="278"/>
 
         <DataGrid x:Name="DescriprtionOfUsers" Margin="0,33,508,21" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="479" CanUserSortColumns="False">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding BindModelName}" Width="80" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Среднее количество шагов" Binding="{Binding BindModelAverageSteps}" Width="170" IsReadOnly="True"/>
@@ -24,6 +29,25 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <Border
+        BorderThickness="2"
+        BorderBrush="Black"
+        Background="LightGray"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Width="408"
+        Height="350"          
+        Margin="544,36,0,0">
+
+            <Canvas Margin="544,36,56,148">
+                <Rectangle Height="100" Width="5" Canvas.Top="210" Canvas.Left="-544" Fill="Red" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Canvas>
+        </Border>
+
+        <Button Content="Save User to Disk" HorizontalAlignment="Left" Margin="691,428,0,0" VerticalAlignment="Top" Width="120" Height="50" RenderTransformOrigin="0.498,0.13" Click="Button_Click"/>
+        <Label Content="Шаги" HorizontalAlignment="Left" Margin="503,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дни (30)" HorizontalAlignment="Left" Margin="895,392,0,0" VerticalAlignment="Top"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="539,381,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.9,-0.923"/>
     </Grid>
 
 </Window>

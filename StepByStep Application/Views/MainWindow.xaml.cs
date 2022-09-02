@@ -35,5 +35,16 @@ namespace StepByStep_Application
 
             DescriprtionOfUsers.ItemsSource = users;
         }
+
+        private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //var dataGridCellTarget = (DataGridCell)sender;
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
