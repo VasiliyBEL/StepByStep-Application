@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.IO;
 using System.Reflection.Metadata;
+using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace StepByStep_Application.ViewModels
 {
@@ -25,6 +27,10 @@ namespace StepByStep_Application.ViewModels
         public Dictionary<string, int> WorstResults { get; set; }
 
         public Dictionary<string, int> AverageSteps { get; set; }
+
+        public Dictionary<string, List<string>> UserStatuses { get; set; }
+
+        public Dictionary<string, List<int>> UserRanks { get; set; }
 
         public UserViewModel()
         {
@@ -53,6 +59,8 @@ namespace StepByStep_Application.ViewModels
             HighestResults = GetBestResults(UserSteps);
             WorstResults = GetWorstResults(UserSteps);
             AverageSteps = GetAverageSteps(UserSteps);
+            UserStatuses = GetStatuses(Users);
+            UserRanks = GetRanks(Users);
         }
 
         private Dictionary<string, List<int>> GetUserStepsResult(List<List<UserProfile>>? users)
@@ -61,7 +69,6 @@ namespace StepByStep_Application.ViewModels
                 throw new ArgumentNullException(nameof(users));
 
             Dictionary<string, List<int>> userStepResult = new Dictionary<string, List<int>>();
-            List<int> steps = new List<int>();
 
             for (int j = 0; j < users[16].Count; j++)
             {
@@ -73,7 +80,7 @@ namespace StepByStep_Application.ViewModels
                 for (int j = 0; j < users[i].Count; j++)
                 {
                     if (userStepResult.ContainsKey(users[i][j].User))
-                    userStepResult[users[i][j].User].Add(users[i][j].Steps);
+                        userStepResult[users[i][j].User].Add(users[i][j].Steps);
                 }
             }
 
@@ -138,6 +145,82 @@ namespace StepByStep_Application.ViewModels
             }
 
             return averageForUser;
+        }
+
+        private Dictionary<string, List<int>> GetRanks(List<List<UserProfile>> usersRanks)
+        {
+            if (usersRanks == null)
+                throw new ArgumentNullException(nameof(usersRanks));
+
+            Dictionary<string, List<int>> userRanksResult = new Dictionary<string, List<int>>();
+
+            for (int j = 0; j < usersRanks[16].Count; j++)
+            {
+                userRanksResult.Add(usersRanks[16][j].User, new List<int>());
+            }
+
+            for (int i = 0; i < usersRanks.Count; i++)
+            {
+                for (int j = 0; j < usersRanks[i].Count; j++)
+                {
+                    if (userRanksResult.ContainsKey(usersRanks[i][j].User))
+                        userRanksResult[usersRanks[i][j].User].Add(usersRanks[i][j].Rank);
+                }
+            }
+
+            return userRanksResult;
+        }
+
+        private Dictionary<string, List<string>> GetStatuses(List<List<UserProfile>> usersStatuses)
+        {
+            if (usersStatuses == null)
+                throw new ArgumentNullException(nameof(usersStatuses));
+
+            Dictionary<string, List<string>> userStatusesResult = new Dictionary<string, List<string>>();
+
+            for (int j = 0; j < usersStatuses[16].Count; j++)
+            {
+                userStatusesResult.Add(usersStatuses[16][j].User, new List<string>());
+            }
+
+            for (int i = 0; i < usersStatuses.Count; i++)
+            {
+                for (int j = 0; j < usersStatuses[i].Count; j++)
+                {
+                    if (userStatusesResult.ContainsKey(usersStatuses[i][j].User))
+                        userStatusesResult[usersStatuses[i][j].User].Add(usersStatuses[i][j].Status);
+                }
+            }
+
+            return userStatusesResult;
+        }
+
+        public ObservableCollection<RectangleModel>? RectItems { get; set; }
+
+        public ObservableCollection<RectangleModel> Draw(string name, UserViewModel user)
+        {
+            ObservableCollection<RectangleModel> rectItems = new ObservableCollection<RectangleModel>();
+            foreach (var userSteps in user.UserSteps)
+            {
+                if (userSteps.Key == name)
+                {
+                    double startX = 0;
+                    double startY = 0;
+                    for (int i = 0; i < userSteps.Value.Count; i++)
+                    {
+                        rectItems.Add(new RectangleModel()
+                        {
+                            X = startX,
+                            Y = startY,
+                            Width = 5,
+                            Height = userSteps.Value[i] / 250,
+                        });
+                        startX += 10;
+                    }
+                }
+            }
+
+            return rectItems;
         }
     }
 }

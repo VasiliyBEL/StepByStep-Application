@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using StepByStep_Application.Models;
+using StepByStep_Application.Services;
 using StepByStep_Application.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -37,14 +39,23 @@ namespace StepByStep_Application
         }
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            //var dataGridCellTarget = (DataGridCell)sender;
-
+        {          
+            var dataGridCellTarget = (DataGridCell)sender;
+            BindModel name = (BindModel)dataGridCellTarget.DataContext;
+            FileIOService dataToSave = new FileIOService(name);
+            GraphicView.ItemsSource = _userViewModel.Draw(name.BindModelName, _userViewModel);
+            MessageBox.Show("График построен!");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.DefaultExt = ".json";
+            saveFile.Filter = "UserData|*.json";
+            if (saveFile.ShowDialog() == true && saveFile.FileName.Length > 0)
+            {
+                FileIOService.Save(saveFile, _userViewModel);
+            }
         }
     }
 }

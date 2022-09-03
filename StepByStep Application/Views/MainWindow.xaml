@@ -32,22 +32,37 @@
         <Border
         BorderThickness="2"
         BorderBrush="Black"
-        Background="LightGray"
         HorizontalAlignment="Left"
         VerticalAlignment="Top"
         Width="408"
         Height="350"          
         Margin="544,36,0,0">
 
-            <Canvas Margin="544,36,56,148">
-                <Rectangle Height="100" Width="5" Canvas.Top="210" Canvas.Left="-544" Fill="Red" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            </Canvas>
+            <ItemsControl Name="GraphicView" ItemsSource="{Binding RectItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                        <Setter Property="Canvas.Bottom" Value="{Binding Y}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="Red"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Border>
 
-        <Button Content="Save User to Disk" HorizontalAlignment="Left" Margin="691,428,0,0" VerticalAlignment="Top" Width="120" Height="50" RenderTransformOrigin="0.498,0.13" Click="Button_Click"/>
+        <Button Content="Сохранить на диск" HorizontalAlignment="Left" Margin="691,428,0,0" VerticalAlignment="Top" Width="120" Height="50" RenderTransformOrigin="0.498,0.13" Click="Button_Click"/>
         <Label Content="Шаги" HorizontalAlignment="Left" Margin="503,36,0,0" VerticalAlignment="Top"/>
         <Label Content="Дни (30)" HorizontalAlignment="Left" Margin="895,392,0,0" VerticalAlignment="Top"/>
         <Label Content="0" HorizontalAlignment="Left" Margin="539,381,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.9,-0.923"/>
+        <Label Content="1:250" HorizontalAlignment="Left" Margin="502,58,0,0" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>
