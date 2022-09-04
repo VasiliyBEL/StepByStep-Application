@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StepByStep_Application" xmlns:local1="clr-namespace:StepByStep_Application.Models" xmlns:viewModels="clr-namespace:StepByStep_Application.ViewModels"
         mc:Ignorable="d"
-        Title="StepByStep" Height="550" Width="1000">
+        Title="StepByStep" Height="550" Width="1000" MaxHeight="550" MaxWidth="1000">
 
     <Window.DataContext>
         <viewModels:UserViewModel/>
@@ -15,8 +15,12 @@
         <Label Content="Список пользователей:" HorizontalAlignment="Left" Height="25" Margin="11,7,0,0" VerticalAlignment="Top" Width="278"/>
         <Label Content="График по выбранному пользователю:" HorizontalAlignment="Left" Height="25" Margin="538,7,0,0" VerticalAlignment="Top" Width="278"/>
 
-        <DataGrid x:Name="DescriprtionOfUsers" Margin="0,33,508,21" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="479" CanUserSortColumns="False">
+        <DataGrid x:Name="DescriprtionOfUsers" Margin="0,33,508,21" FontSize="10" FontWeight="Bold" AutoGenerateColumns="False" HorizontalAlignment="Right" Width="479" CanUserSortColumns="False" CanUserAddRows="False">
             <DataGrid.Resources>
+                <Style TargetType="DataGridRow" x:Key="SelectedRowStyle">
+                    <Setter Property="Background" Value="Red"/>
+                </Style>
+                
                 <Style TargetType="{x:Type DataGridCell}">
                     <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
                 </Style>

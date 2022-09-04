@@ -13,11 +13,11 @@ namespace StepByStep_Application.ViewModels
         {
             var collectionOfUsers = new List<BindModel>();
 
-            for (int i = 0; i < userViewModel.Names.Count; i++)
+            for (int i = 0; i < userViewModel.Names?.Count; i++)
             {
                 collectionOfUsers.Add(new BindModel
                 {
-                    BindModelName = userViewModel.AverageSteps.Keys.ToList()[i],
+                    BindModelName = userViewModel.AverageSteps?.Keys.ToList()[i],
                     BindModelAverageSteps = userViewModel.AverageSteps.Values.ToList()[i],
                     BindModelHighestResults = userViewModel.HighestResults.Values.ToList()[i],
                     BindModelWorstResults = userViewModel.WorstResults.Values.ToList()[i]

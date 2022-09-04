@@ -20,17 +20,17 @@ namespace StepByStep_Application.ViewModels
 
         public HashSet<string>? Names { get; set; }
 
-        public Dictionary<string, List<int>> UserSteps { get; set; }
+        public Dictionary<string, List<int>>? UserSteps { get; set; }
 
-        public Dictionary<string, int> HighestResults { get; set; }
+        public Dictionary<string, int>? HighestResults { get; set; }
 
-        public Dictionary<string, int> WorstResults { get; set; }
+        public Dictionary<string, int>? WorstResults { get; set; }
 
-        public Dictionary<string, int> AverageSteps { get; set; }
+        public Dictionary<string, int>? AverageSteps { get; set; }
 
-        public Dictionary<string, List<string>> UserStatuses { get; set; }
+        public Dictionary<string, List<string>>? UserStatuses { get; set; }
 
-        public Dictionary<string, List<int>> UserRanks { get; set; }
+        public Dictionary<string, List<int>>? UserRanks { get; set; }
 
         public UserViewModel()
         {
@@ -171,7 +171,7 @@ namespace StepByStep_Application.ViewModels
             return userRanksResult;
         }
 
-        private Dictionary<string, List<string>> GetStatuses(List<List<UserProfile>> usersStatuses)
+        private Dictionary<string, List<string>> GetStatuses(List<List<UserProfile>>? usersStatuses)
         {
             if (usersStatuses == null)
                 throw new ArgumentNullException(nameof(usersStatuses));
@@ -197,7 +197,7 @@ namespace StepByStep_Application.ViewModels
 
         public ObservableCollection<RectangleModel>? RectItems { get; set; }
 
-        public ObservableCollection<RectangleModel> Draw(string name, UserViewModel user)
+        public ObservableCollection<RectangleModel> Draw(string? name, UserViewModel user)
         {
             ObservableCollection<RectangleModel> rectItems = new ObservableCollection<RectangleModel>();
             foreach (var userSteps in user.UserSteps)

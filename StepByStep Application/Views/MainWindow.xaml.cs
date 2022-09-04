@@ -4,6 +4,7 @@ using StepByStep_Application.Models;
 using StepByStep_Application.Services;
 using StepByStep_Application.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -39,12 +40,17 @@ namespace StepByStep_Application
         }
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {          
+        {
             var dataGridCellTarget = (DataGridCell)sender;
             BindModel name = (BindModel)dataGridCellTarget.DataContext;
+            BindModel selectedUser = (BindModel)dataGridCellTarget.DataContext;
+            List<BindModel> users = BindViewModel.GetCollectionOfUsers(_userViewModel);
+            BrushService.BrushColumns(DescriprtionOfUsers, selectedUser, users);
+
             FileIOService dataToSave = new FileIOService(name);
             GraphicView.ItemsSource = _userViewModel.Draw(name.BindModelName, _userViewModel);
             MessageBox.Show("График построен!");
+            BrushService.Clear(DescriprtionOfUsers, selectedUser, users);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
