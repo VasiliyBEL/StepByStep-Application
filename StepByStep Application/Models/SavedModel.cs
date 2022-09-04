@@ -16,8 +16,8 @@ namespace StepByStep_Application.Models
 
         public int savedModelWorstResults { get; set; }
 
-        public List<string>? savedUserStatuses { get; set; }
+        public List<string>? SavedUserStatuses { get; set; }
 
-        public List<int>? savedUserRanks { get; set; }
+        public List<int>? SavedUserRanks { get; set; }
     }
 }

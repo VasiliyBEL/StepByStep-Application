@@ -39,7 +39,7 @@ namespace StepByStep_Application.ViewModels
 
         private void GetJsonData()
         {
-            string path = @"C:\Users\vaspn\source\repos\StepByStep Application\StepByStep Application\Content\DAYS";
+            string path = Path.GetFullPath(@"..\..\..\Content\DAYS");           
             var directory = new DirectoryInfo(path);
             List<List<UserProfile>> members = new List<List<UserProfile>>();
             for (int index = 1; index <= directory.GetFiles().Length; index++)

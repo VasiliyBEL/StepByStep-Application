@@ -30,8 +30,9 @@ namespace StepByStep_Application.Services
             userData.savedModelAverageSteps = _data.BindModelAverageSteps;
             userData.savedModelHighestResults = _data.BindModelHighestResults;
             userData.savedModelWorstResults = _data.BindModelWorstResults;
-            userData.savedUserRanks = userViewModel?.UserRanks?[userData.savedModelName];
-            userData.savedUserStatuses = userViewModel?.UserStatuses?[userData.savedModelName];
+            userData.SavedUserRanks = userViewModel?.UserRanks?[userData.savedModelName];
+            userData.SavedUserStatuses = userViewModel?.UserStatuses?[userData.savedModelName];
+
             string json = JsonSerializer.Serialize<SavedModel>(userData);
             File.WriteAllText(file.FileName, Regex.Unescape(json), Encoding.UTF8);
         }

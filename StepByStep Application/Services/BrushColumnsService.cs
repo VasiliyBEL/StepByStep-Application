@@ -20,7 +20,7 @@ namespace StepByStep_Application.Services
 
                 if (row != null)
                 {
-                        if (selectedUser.BindModelAverageSteps > bindingData[i].BindModelWorstResults)
+                        if (selectedUser.BindModelAverageSteps * 0.8 > bindingData[i].BindModelWorstResults)
                         {
                             row.Style = (Style)data.Resources["SelectedRowStyle"];
                         }
